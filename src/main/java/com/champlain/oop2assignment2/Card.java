@@ -1,4 +1,7 @@
 package com.champlain.oop2assignment2;
+import java.util.Comparator;
+import java.util.Arrays;
+
 
 import java.util.Objects;
 
@@ -17,6 +20,16 @@ public class Card {
 
     public Suit getSuit() {
         return this.aSuit;
+    }
+
+    private static Comparator<Card> currentComparator = new RankFirstComparator();
+
+    public static void setSortingStrategy(Comparator<Card> comparator) {
+        currentComparator = comparator;
+    }
+
+    public static void sortCards(Card[] cards) {
+        Arrays.sort(cards, currentComparator);
     }
 
     @Override

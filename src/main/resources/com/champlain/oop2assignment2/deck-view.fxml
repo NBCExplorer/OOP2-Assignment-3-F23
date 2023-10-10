@@ -42,14 +42,16 @@
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
      </columnConstraints>
      <rowConstraints>
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
           <Button onAction="#onShuffleButtonClick" prefHeight="25.0" prefWidth="100.0" text="Shuffle" />
-         <Button onAction="#onSortButtonClick" prefHeight="25.0" prefWidth="100.0" text="Sort" GridPane.columnIndex="1" />
-         <Button onAction="#onScoreButtonClick" prefHeight="25.0" prefWidth="100.0" text="Score" GridPane.columnIndex="2" />
+          <Button onAction="#onSortByRankButtonClick" prefHeight="25.0" prefWidth="100.0" text="Sort by Rank" GridPane.columnIndex="1" />
+          <Button onAction="#onSortBySuitButtonClick" prefHeight="25.0" prefWidth="100.0" text="Sort by Suit" GridPane.columnIndex="2" />
+         <Button onAction="#onScoreButtonClick" prefHeight="25.0" prefWidth="100.0" text="Score" GridPane.columnIndex="3" />
       </children>
    </GridPane>
 </VBox>
