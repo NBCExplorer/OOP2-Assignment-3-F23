@@ -27,6 +27,10 @@ public class Deck extends CardCollection implements CardSource {
         return myCard;
     }
 
+    public Card[] getDeck() {
+        return aCards.toArray(new Card[0]);
+    }
+
     public boolean isEmpty() {
         return this.aCards.isEmpty();
     }

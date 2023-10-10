@@ -3,6 +3,11 @@ package com.champlain.oop2assignment2;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import java.util.Comparator;
+
+
+import java.util.Arrays;
+
 
 public class DeckController {
     @FXML
@@ -18,6 +23,8 @@ public class DeckController {
 
     private final Hand aHand = new Hand();
 
+    private boolean isRankFirst = true;  // Flag to track the current sorting strategy
+
     public void initialize() {
         this.displayCardCollections();
     }
@@ -30,8 +37,40 @@ public class DeckController {
 
     @FXML
     protected void onSortButtonClick() {
-        aDeckTextArea.setText("This does not sort anything yet.");
+        // Sort the deck using the current sorting strategy
+        Card[] deckArray = aDeck.getDeck();
+        Comparator<Card> currentComparator = isRankFirst ? new RankFirstComparator() : new SuitFirstComparator();
+        Card.setSortingStrategy(currentComparator);
+        Card.sortCards(deckArray);
+
+        // Update the TextArea to display the sorted deck
+        aDeckTextArea.setText(formatCards(deckArray));
     }
+
+    @FXML
+    protected void onSortByRankButtonClick() {
+        // Sort the deck by rank
+        Card[] deckArray = aDeck.getDeck();
+        Card.setSortingStrategy(new RankFirstComparator());
+        Card.sortCards(deckArray);
+
+        // Update the TextArea to display the sorted deck
+        aDeckTextArea.setText(formatCards(deckArray));
+    }
+
+    @FXML
+    protected void onSortBySuitButtonClick() {
+        // Sort the deck by suit
+        Card[] deckArray = aDeck.getDeck();
+        Card.setSortingStrategy(new SuitFirstComparator());
+        Card.sortCards(deckArray);
+
+        // Update the TextArea to display the sorted deck
+        aDeckTextArea.setText(formatCards(deckArray));
+    }
+
+
+
 
     @FXML
     protected void onScoreButtonClick() {
@@ -49,5 +88,17 @@ public class DeckController {
     private void displayCardCollections () {
         this.aDeckTextArea.setText(this.aDeck.toString());
         this.aHandTextArea.setText(this.aHand.toString());
+    }
+
+    private String formatCards(Card[] cards) {
+        // Create a StringBuilder to build the formatted text
+        StringBuilder formattedText = new StringBuilder();
+
+        // Append each card to the StringBuilder with a line break
+        for (Card card : cards) {
+            formattedText.append(card.toString()).append("\n");
+        }
+
+        return formattedText.toString();
     }
 }
